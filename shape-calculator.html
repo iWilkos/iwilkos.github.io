@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator Terminal</title>
+    <title>Shape Calculator Terminal</title>
     <style>
         body {
             margin: 0;
@@ -102,34 +102,17 @@
             font-size: 12px;
             color: #d4d4d4;
         }
-
-        .copy-button {
-            background: #4fc3f7;
-            border: none;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 10px;
-            cursor: pointer;
-            margin-left: 8px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .output-line:hover .copy-button {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
-    <div class="terminal-container" id="password-generator-cli">
+    <div class="terminal-container" id="shape-calculator-cli">
         <div class="terminal-header">
             <div class="terminal-buttons">
                 <span class="terminal-button close"></span>
                 <span class="terminal-button minimize"></span>
                 <span class="terminal-button maximize"></span>
             </div>
-            <div class="terminal-title">Password Generator CLI</div>
+            <div class="terminal-title">Shape Calculator CLI</div>
         </div>
         <div class="terminal-window">
             <div class="terminal-output"></div>
@@ -139,6 +122,6 @@
             </div>
         </div>
     </div>
-    <script src="PasswordGenerator.js"></script>
+    <script src="ShapeCalculator.js"></script>
 </body>
 </html> 

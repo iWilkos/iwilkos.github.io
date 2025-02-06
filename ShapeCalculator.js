@@ -217,5 +217,5 @@ class ShapeCalculatorTerminal {
 
 // Initialize the terminal when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const terminal = new ShapeCalculatorTerminal('shape-terminal');
+    const terminal = new ShapeCalculatorTerminal('shape-calculator-cli');
 }); 
