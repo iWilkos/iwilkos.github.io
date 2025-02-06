@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <title>Projects and Certifications | Ben Wilkinson Portfolio</title>
     <style>
         body {
@@ -291,12 +291,16 @@
         /* Medium screens (768px to 1199px) */
         @media screen and (max-width: 1199px) {
             .project-card.featured {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
                 padding: 30px;
             }
 
             .project-content {
-                padding-left: 80px;
+                padding-left: 20px;
+            }
+            
+            .terminal-container {
+                margin-top: 20px;
             }
         }
 
@@ -309,36 +313,27 @@
 
             .project-content {
                 padding-left: 20px;
-                padding-top: 60px; /* Space for the icon */
             }
 
-            .project-card.featured img {
-                top: 20px;
-                left: 20px;
+            .certification-image {
+                width: 90%;
             }
 
             .terminal-container {
-                --terminal-height: 250px;
+                --terminal-height: 300px;
             }
 
-            .project-card .certification-image {
-                max-width: 300px;
+            .terminal-input,
+            .prompt,
+            .output-line {
+                font-size: 14px;
             }
         }
 
-        /* Extra small screens (up to 575px) */
-        @media screen and (max-width: 575px) {
-            :root {
-                --card-padding: 15px;
-            }
-
+        /* Extra small screens */
+        @media screen and (max-width: 480px) {
             .projects-section {
-                padding: 80px 10px;
-            }
-
-            .projects-grid {
-                gap: 20px;
-                padding: 0 10px;
+                padding: 60px 10px;
             }
 
             .project-card.featured {
@@ -346,43 +341,21 @@
             }
 
             .project-content h3 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
             .project-content p {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
 
             .terminal-container {
-                --terminal-height: 200px;
+                --terminal-height: 250px;
             }
 
-            .project-card .certification-image {
-                max-width: 250px;
-            }
-
-            .project-link {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Handle very small screens */
-        @media screen and (max-width: 360px) {
-            .project-card.featured {
-                padding: 10px;
-            }
-
-            .project-content {
-                padding: 50px 10px 10px;
-            }
-
-            .terminal-container {
-                --terminal-height: 180px;
-            }
-
-            .project-card .certification-image {
-                max-width: 200px;
+            .terminal-input,
+            .prompt,
+            .output-line {
+                font-size: 13px;
             }
         }
 
@@ -569,9 +542,61 @@
                 margin: 20px auto;
             }
         }
+
+        .social-buttons-top {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            z-index: 1002;
+        }
+
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            width: 48px;
+            height: 48px;
+            color: white;
+            text-decoration: none;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .social-button img {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-button:hover img {
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 480px) {
+            .social-button {
+                width: 44px;
+                height: 44px;
+            }
+
+            .social-button img {
+                width: 28px;
+                height: 28px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="social-buttons-top">
+        <a href="https://github.com/iWilkos" target="_blank" class="social-button">
+            <img src="other/github-mark-c791e9551fe4/github-mark/github-mark-white.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/ben-wilkinson-900a32286" target="_blank" class="social-button">
+            <img src="other/LinkedIn-Logos/LinkedIn-Logos/LI-In-Bug.png" alt="LinkedIn">
+        </a>
+    </div>
     <button class="toggle-btn">
         <span></span>
         <span></span>
@@ -649,7 +674,7 @@
                             <div class="terminal-output"></div>
                             <div class="terminal-input-line">
                                 <span class="prompt">guest@portfolio:~$</span>
-                                <input type="text" class="terminal-input" autofocus>
+                                <input type="text" class="terminal-input">
                             </div>
                         </div>
                     </div>

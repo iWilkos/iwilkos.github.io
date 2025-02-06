@@ -189,11 +189,23 @@
             .sidebar.active {
                 left: 0;
             }
+
+            .cv-section {
+                padding: 80px 15px;
+            }
+
+            .cv-container {
+                padding: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media screen and (max-width: 480px) {
             .cv-section {
-                padding: 80px 10px 20px;
+                padding: 60px 10px;
             }
 
             .cv-container {
@@ -205,9 +217,16 @@
                 padding: 15px;
             }
 
-            .skills-grid,
-            .hobbies-grid {
-                grid-template-columns: 1fr 1fr;
+            .cv-section h2 {
+                font-size: 2rem;
+            }
+
+            .cv-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
                 gap: 10px;
             }
 
@@ -225,17 +244,94 @@
             touch-action: pan-y;
         }
 
+        .cv-download {
+            text-align: center;
+            margin: 30px 0;
+        }
+
         .cv-download a {
-            min-height: 44px;
-            min-width: 44px;
-            padding: 12px 25px;
+            display: inline-block;
+            background-color: #4fc3f7;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cv-download a:hover {
+            background-color: #81d4fa;
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 480px) {
+            .cv-download {
+                margin: 20px 10px;
+            }
+
+            .cv-download a {
+                width: calc(100% - 20px);
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        .social-buttons-top {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            z-index: 1002;
+        }
+
+        .social-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            padding: 12px;
+            width: 48px;
+            height: 48px;
+            color: white;
+            text-decoration: none;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .social-button img {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-button:hover img {
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 480px) {
+            .social-button {
+                width: 44px;
+                height: 44px;
+            }
+
+            .social-button img {
+                width: 28px;
+                height: 28px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="social-buttons-top">
+        <a href="https://github.com/iWilkos" target="_blank" class="social-button">
+            <img src="other/github-mark-c791e9551fe4/github-mark/github-mark-white.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/ben-wilkinson-900a32286" target="_blank" class="social-button">
+            <img src="other/LinkedIn-Logos/LinkedIn-Logos/LI-In-Bug.png" alt="LinkedIn">
+        </a>
+    </div>
     <button class="toggle-btn">
         <span></span>
         <span></span>
@@ -399,16 +495,10 @@
         </section>
     </div>
 
-    <div class="cv-download" style="text-align: center; margin: 20px 0;">
-        <a href="other/CV2025.2 WebsiteCopy.pdf" target="_blank" style="
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #4fc3f7;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        ">Download CV (PDF)</a>
+    <div class="cv-download">
+        <a href="other/CV2025.2 WebsiteCopy.pdf" target="_blank">
+            Download CV (PDF)
+        </a>
     </div>
 
     <footer style="text-align: center; padding: 20px; color: rgba(255,255,255,0.7); font-size: 0.9em;">
