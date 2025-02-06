@@ -172,8 +172,29 @@
             margin-bottom: 50px;  /* Add space between featured cards */
         }
 
+        #password-generator-cli .terminal-input-line{
+            position: relative;
+            z-index: 1;
+        }
+
+        #shape-calculator-cli .terminal-input-line{
+            position: relative;
+            z-index: 1;
+        }
+
+        #password-generator-cli .terminal-window{
+            position: relative;
+            z-index: 0;
+        }
+
+        #shape-calculator-cli .terminal-window{
+            position: relative;
+            z-index: 0;
+        }
+
+
         /* Separate CLI containers */
-        #password-generator-cli .terminal-input-line,
+        /* #password-generator-cli .terminal-input-line,
         #shape-calculator-cli .terminal-input-line {
             position: relative;
             z-index: 1;
@@ -183,7 +204,7 @@
         #shape-calculator-cli .terminal-window {
             position: relative;
             z-index: 0;
-        }
+        } */
 
         /* Ensure each CLI container is independent */
         .terminal-container {
