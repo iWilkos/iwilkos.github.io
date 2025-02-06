@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects and Certifications | Ben Wilkinson Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1a2b3c 0%, #2c3e50 100%);
+        }
+
+        /* Remove old nav styles */
+        nav {
+            display: none;
+        }
+
+        /* Add sidebar styles */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #2c3e50;
+            transition: 0.3s ease-in-out;
+            z-index: 1000;
+            padding-top: 60px;
+            box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .toggle-btn {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 25px;
+        }
+
+        .toggle-btn span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .toggle-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .toggle-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .toggle-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .content {
+            transition: margin-left 0.3s ease-in-out;
+            margin-left: 0;
+        }
+
+        .content.active {
+            margin-left: 250px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .content.active {
+                margin-left: 0;
+            }
+            
+            .sidebar {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .sidebar.active {
+                left: 0;
+            }
+        }
+
+        .projects-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .projects-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            animation: slideInFromTop 1s ease-out forwards, glowPulse 2s infinite;
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        @keyframes slideInFromTop {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 10px rgba(79, 195, 247, 0.5); }
+            50% { text-shadow: 0 0 25px rgba(79, 195, 247, 0.8), 0 0 40px rgba(79, 195, 247, 0.4); }
+            100% { text-shadow: 0 0 10px rgba(79, 195, 247, 0.5); }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+        }
+
+        .project-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            border-radius: 5px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-content {
+            width: 100%;
+            padding: 20px;
+            padding-left: 100px;
+            box-sizing: border-box;
+        }
+
+        .project-content h3 {
+            margin: 0 0 15px 0;
+            color: #4fc3f7;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            padding-top: 5px;
+        }
+
+        .project-card.featured {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Split into two columns */
+            gap: 30px;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .project-card.featured .project-content {
+            padding-left: 100px;
+            grid-column: 1;
+        }
+
+        .project-card.featured .terminal-container {
+            grid-column: 2;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        /* Update project image position */
+        .project-card.featured img {
+            top: 40px;
+            left: 40px;
+        }
+
+        .project-card.compact {
+            max-width: 1000px;
+            justify-self: center;
+            padding: 40px;
+        }
+
+        .project-content p {
+            margin-bottom: 15px;
+            clear: both;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4fc3f7;
+            color: #1a2b3c;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .project-link:hover {
+            background-color: #81d4fa;
+            transform: translateY(-2px);
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(79, 195, 247, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); }
+        }
+
+        .project-content h3 {
+            animation: titleGlow 2s infinite;
+        }
+
+        .terminal-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            overflow: hidden;
+            font-family: 'Consolas', monospace;
+            width: calc(100% - 40px);
+            max-width: 400px;
+            display: block;
+        }
+
+        .terminal-header {
+            background: #333;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            user-select: none;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 6px;
+            margin-right: 12px;
+        }
+
+        .terminal-button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .close { background: #ff5f56; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #27c93f; }
+
+        .terminal-title {
+            color: #fff;
+            font-size: 12px;
+        }
+
+        .terminal-window {
+            padding: 12px;
+            color: #fff;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .prompt {
+            color: #4fc3f7;
+            font-size: 12px;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: inherit;
+            font-size: 12px;
+            flex: 1;
+            outline: none;
+        }
+
+        .output-line {
+            margin: 4px 0;
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+
+        .success { color: #27c93f; }
+        .error { color: #ff5f56; }
+        .copy-button {
+            background: #4fc3f7;
+            border: none;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-left: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .output-line:hover .copy-button {
+            opacity: 1;
+        }
+
+        /* Update project card styles */
+        .project-card.compact {
+            max-width: 500px;
+            justify-self: center;
+            padding: 40px;
+        }
+
+        /* Update certification image styles */
+        .project-card .certification-image {
+            justify-self: center;
+            width: 50%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            margin: 30px auto;
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: static;
+            cursor: pointer;
+        }
+
+        /* Add hover effect */
+        .project-card .certification-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(79, 195, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Update certification card specific styles */
+        .project-card.certification {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .project-card.certification .project-content {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-card.certification h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .project-card.certification p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .project-card.featured {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-card.featured .project-content,
+            .project-card.featured .terminal-container {
+                grid-column: 1;
+            }
+
+            .project-card.featured .terminal-container {
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects and Certifications</a></li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <section class="projects-section" id="projects">
+            <h2>Projects and Certifications</h2>
+
+            <div class="projects-grid">
+                <!-- Password Generator Project Card -->
+                <div class="project-card featured">
+                    <div class="project-content">
+                        <img src="images/programming.png" alt="Password Generator">
+                        <h3>Password Generator Project</h3>
+                        <p>This Password Generator Algorithm was made in C# and is a simple project that generates 
+                            a random password when the program is run.</p>
+                        <p>It is a command line interface and does not have a GUI. This was created for an assignment 
+                            within my Programming unit during my Level 4 HNC at Boston College.</p>
+                        <a href="https://github.com/iWilkos/PasswordGeneratorProj/blob/main/PasswordGenerator/Program.cs" 
+                           class="project-link">Github Repository</a>
+                    </div>
+                    
+                    <!-- Terminal Demo -->
+                    <div class="terminal-container">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="terminal-button close"></span>
+                                <span class="terminal-button minimize"></span>
+                                <span class="terminal-button maximize"></span>
+                            </div>
+                            <div class="terminal-title">Password Generator CLI</div>
+                        </div>
+                        <div class="terminal-window" id="terminal">
+                            <div class="terminal-output"></div>
+                            <div class="terminal-input-line">
+                                <span class="prompt">guest@portfolio:~$</span>
+                                <input type="text" class="terminal-input" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shape Calculator Project Card -->
+                <div class="project-card featured">
+                    <div class="project-content">
+                        <img src="images/programming.png" alt="Shape Calculator">
+                        <h3>Shape Calculator using OOP</h3>
+                        <p>This was a Shape Calculator that was made using OOP in C# for an Object Oriented Programming Unit assignment.</p>
+                        <a href="https://github.com/iWilkos/ShapeCalculatorOOP.git" class="project-link">Github Repository</a>
+                    </div>
+                    
+                    <!-- Terminal Demo -->
+                    <div class="terminal-container">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="terminal-button close"></span>
+                                <span class="terminal-button minimize"></span>
+                                <span class="terminal-button maximize"></span>
+                            </div>
+                            <div class="terminal-title">Shape Calculator CLI</div>
+                        </div>
+                        <div class="terminal-window" id="shape-terminal">
+                            <div class="terminal-output"></div>
+                            <div class="terminal-input-line">
+                                <span class="prompt">guest@portfolio:~$</span>
+                                <input type="text" class="terminal-input" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Certification (Smaller) -->
+                <div class="project-card compact certification">
+                    <div class="project-content">
+                        <h3>Security Fundamentals Certification</h3>
+                        <p>Click the image to view the certification.</p>
+                        <a href="https://www.credly.com/badges/76e497f2-9068-441f-bbcb-524fa27fb127/public_url">
+                            <img src="images/SC900.png" 
+                                alt="Security Certification" 
+                                class="certification-image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; color: rgba(255,255,255,0.7); font-size: 0.9em;">
+        <p>© 2025 Ben Wilkinson™. All rights reserved.</p>
+        <p style="font-size: 0.8em;">Built with the assistance of AI tools, including Cursor AI.</p>
+    </footer>
+
+    <script src="navigation.js"></script>
+    <script src="terminal.js"></script>
+    <script src="ShapeCalculator.js"></script>
+</body>
+</html>

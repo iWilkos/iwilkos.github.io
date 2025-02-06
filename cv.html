@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CV | Ben Wilkinson Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1a2b3c 0%, #2c3e50 100%);
+            color: white;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #2c3e50;
+            transition: 0.3s ease-in-out;
+            z-index: 1000;
+            padding-top: 60px;
+            box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .toggle-btn {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 25px;
+        }
+
+        .toggle-btn span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .toggle-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .toggle-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .toggle-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .content {
+            transition: margin-left 0.3s ease-in-out;
+            margin-left: 0;
+        }
+
+        .content.active {
+            margin-left: 250px;
+        }
+
+        .cv-section {
+            padding: 120px 20px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cv-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cv-section h2 {
+            color: #4fc3f7;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: titleGlow 2s infinite;
+        }
+
+        .cv-section h3 {
+            color: #4fc3f7;
+            font-size: 1.8rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(79, 195, 247, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .experience-item, .education-item {
+            background: rgba(79, 195, 247, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .date {
+            color: #4fc3f7;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background: rgba(79, 195, 247, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(79, 195, 247, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); }
+        }
+
+        @media screen and (max-width: 768px) {
+            .content.active {
+                margin-left: 0;
+            }
+            
+            .sidebar {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .sidebar.active {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects and Certifications</a></li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <section class="cv-section">
+            <div class="cv-container">
+                <h2>Curriculum Vitae</h2>
+                
+
+                <h3>Work Experience</h3>
+                <div class="experience-item">
+                    <div class="date">January 2024 - April 2024</div>
+                    <h4>Dispatcher - Unique Products UK</h4>
+                    <p>Address: 2 Hassall Rd, Skegness PE25 3TB</p>
+                    <ul>
+                        <li>Printing labels for orders and sorting them into different places variant on which company is delivering (e.g., Evri, Parcel Force)</li>
+                        <li>IT Department Experience: Learning about website inner workings and database management</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="date">October 2023 - December 2023</div>
+                    <h4>Festive Colleague - Tesco</h4>
+                    <p>Address: Richmond Dr, Skegness PE25 3PQ</p>
+                    <ul>
+                        <li>Filling shelves and dealing with stock</li>
+                        <li>Customer service responsibilities</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="date">April 2023 - October 2023</div>
+                    <h4>Back of House - Pizza Hut</h4>
+                    <p>Address: Skegness Retail Park, Heath Rd, Skegness PE25 3ST</p>
+                    <p>Pizza Hut Skegness Closed in October 2023</p>
+                    <ul>
+                        <li>Maintained kitchen operations</li>
+                        <li>Prepared and served food to front of house</li>
+                        <li>Ensured kitchen cleanliness and food preparation standards</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="date">December 2022</div>
+                    <h4>Christmas Temporary Staff - Marks and Spencer</h4>
+                    <p>Address: Skegness SF, Quora Retail Park, Burgh Road, Skegness, PE25 2RJ</p>
+                    <ul>
+                        <li>Stock management and shelf filling</li>
+                        <li>Shop floor operations</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="date">November 2021 - December 2021</div>
+                    <h4>Production Line Worker - Lymn Bank Cheese Co</h4>
+                    <p>Address: Lymn Bank Farm, Lymn Bank East, Thorpe St Peter PE24 4PJ</p>
+                    <p>Temporary Contract</p>
+                    <ul>
+                        <li>Quality control of wax cheeses</li>
+                        <li>Production line operations</li>
+                    </ul>
+                </div>
+
+                <h3>Work Experience (IT Related)</h3>
+                <div class="experience-item">
+                    <div class="date">October 2021</div>
+                    <h4>IT Department - Boston College</h4>
+                    <p>Address: Skirbeck Rd, Boston PE21 6JF</p>
+                    <ul>
+                        <li>Assisted with computer auditing</li>
+                        <li>Hardware verification and reporting</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">  
+                    <div class="date">November 2019 - December 2019</div>
+                    <h4>IT Department - Giles Academy</h4>
+                    <p>Address: School Ln, Old Leake, Boston PE22 9LD</p>
+                    <ul>
+                        <li>Hardware maintenance and replacement</li>
+                        <li>Basic PC troubleshooting</li>
+                        <li>30-45 hours of practical IT experience</li>
+                    </ul>
+                </div>
+
+                <h3>Education and Qualifications</h3>
+                <div class="education-item">
+                    <div class="date">2024 - Present</div>
+                    <h4>BTEC Higher National Certificate in Computing for England Level 4</h4>
+                    <p>Boston College</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="date">2021 - 2022</div>
+                    <h4>BTEC National Extended Diploma in Computing Level 3</h4>
+                    <p>Boston College</p>
+                    <p>Grade: DMM</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="date">2020 - 2021</div>
+                    <h4>GCSE English and Mathematics</h4>
+                    <p>Boston College</p>
+                    <p>English Language: Grade 5</p>
+                    <p>Mathematics: Grade 4</p>
+                </div>
+
+                <h3>Certifications</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>Microsoft</h4>
+                        <p>Security Fundamentals SC-900</p>
+                    </div>
+                </div>
+
+                <h3>Technical Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>Programming</h4>
+                        <p>C#, Python</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Web Development</h4>
+                        <p>HTML, CSS, JavaScript</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Hardware</h4>
+                        <p>Computer Building and Maintenance</p>
+                    </div>
+                </div>
+
+                <h3>Interests</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>Gaming</h4>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Formula 1</h4>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Social Media</h4>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Science Fiction</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="cv-download" style="text-align: center; margin: 20px 0;">
+        <a href="other/CV2025.2 WebsiteCopy.pdf" target="_blank" style="
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #4fc3f7;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        ">Download CV (PDF)</a>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; color: rgba(255,255,255,0.7); font-size: 0.9em;">
+        <p>© 2025 Ben Wilkinson™. All rights reserved.</p>
+        <p style="font-size: 0.8em;">Built with the assistance of AI tools, including Cursor AI.</p>
+    </footer>
+
+    <script src="navigation.js"></script>
+</body>
+</html> 
