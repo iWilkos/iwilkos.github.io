@@ -7,12 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let commandHistory = [];
     let historyIndex = -1;
 
-    function generatePassword(length = 12) {
-        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
-        let password = "";
-        for (let i = 0; i < length; i++) {
-            password += charset.charAt(Math.floor(Math.random() * charset.length));
-        }
+    function generatePassword(length = 16) {
+        const words = ["begin", "cover", "wrong", "bread", "siege", "peace", "floor", "minor", "sheet", "grass"];
+        const moreWords = ["paint", "state", "great", "ridge", "feast", "laser", "chalk", "angle", "story", "sweet"];
+        const special = '!@#$%^&*';
+        const numbers = '0123456789';
+        
+        const word = words[Math.floor(Math.random() * words.length)];
+        const moreWord = moreWords[Math.floor(Math.random() * moreWords.length)];
+        const specialChar = special[Math.floor(Math.random() * special.length)];
+        const number = Math.floor(Math.random() * 1000);
+        
+        const password = `${word}${specialChar}${specialChar}${moreWord}${specialChar}${specialChar}${number}`;
         return password;
     }
 
@@ -34,8 +40,23 @@ document.addEventListener('DOMContentLoaded', function() {
             addOutput('  help - Show this help message');
         } else if (cmd === 'generate') {
             const password = generatePassword();
-            addOutput('Generated password:');
-            addOutput(password);
+            addOutput('Generated Password:', true);
+            const line = document.createElement('div');
+            line.className = 'output-line';
+            line.textContent = password;
+            
+            // Add copy button functionality
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Copy';
+            copyButton.onclick = () => {
+                navigator.clipboard.writeText(password);
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => copyButton.textContent = 'Copy', 1000);
+            };
+            line.appendChild(copyButton);
+            
+            output.appendChild(line);
         } else if (cmd === 'clear') {
             output.innerHTML = '';
         } else if (cmd !== '') {
