@@ -1,115 +1,102 @@
 class Shape {
-    constructor() {
-        this.lCalcBound = 0;
-        this.uCalcBound = 9999999999.99;
+    constructor(name) {
+        this.name = name;
     }
 
-    outputValue(attribute, shape, value) {
-        return `The ${attribute} of the ${shape} is ${Number(value).toFixed(2)}`;
+    outputValue(type, shape, value, unit) {
+        return `${shape} ${type}: ${value.toFixed(2)} ${unit}`;
     }
+
 }
 
 class Circle extends Shape {
     constructor() {
-        super();
-        this.PI = Math.PI;
-    }
-
-    calcArea(radius) {
-        return this.PI * Math.pow(radius, 2);
-    }
-
-    calcCircumference(radius) {
-        return 2.0 * this.PI * radius;
+        super('Circle');
     }
 
     calculate(radius) {
-        if (radius <= this.lCalcBound || radius >= this.uCalcBound) {
-            throw new Error("Value must be between 0 and 9999999999.99");
+        if (radius <= 0) {
+            throw new Error('Radius must be greater than 0');
         }
         return {
-            area: this.calcArea(radius),
-            circumference: this.calcCircumference(radius)
+            area: Math.PI * radius * radius,
+            circumference: 2 * Math.PI * radius
         };
     }
 }
 
 class Square extends Shape {
     constructor() {
-        super();
-    }
-
-    calcArea(length) {
-        return length * length;
-    }
-
-    calcPerimeter(length) {
-        return length * 4.0;
+        super('Square');
     }
 
     calculate(length) {
-        if (length <= this.lCalcBound || length >= this.uCalcBound) {
-            throw new Error("Value must be between 0 and 9999999999.99");
+        if (length <= 0) {
+            throw new Error('Length must be greater than 0');
         }
         return {
-            area: this.calcArea(length),
-            perimeter: this.calcPerimeter(length)
+            area: length * length,
+            perimeter: 4 * length
         };
     }
 }
 
 class Rectangle extends Shape {
     constructor() {
-        super();
-    }
-
-    calcArea(length, width) {
-        return length * width;
-    }
-
-    calcPerimeter(length, width) {
-        return (length * 2.0) + (width * 2.0);
+        super('Rectangle');
     }
 
     calculate(length, width) {
-        if (length <= this.lCalcBound || length >= this.uCalcBound ||
-            width <= this.lCalcBound || width >= this.uCalcBound) {
-            throw new Error("Values must be between 0 and 9999999999.99");
+        if (length <= 0 || width <= 0) {
+            throw new Error('Length and width must be greater than 0');
         }
         return {
-            area: this.calcArea(length, width),
-            perimeter: this.calcPerimeter(length, width)
+            area: length * width,
+            perimeter: 2 * (length + width)
         };
     }
 }
 
 class ShapeCalculatorTerminal {
-    constructor(containerId) {
-        this.terminal = document.getElementById(containerId);
+    constructor(terminalId) {
+        this.terminal = document.getElementById(terminalId);
         this.output = this.terminal.querySelector('.terminal-output');
         this.input = this.terminal.querySelector('.terminal-input');
+        this.commandHistory = [];
+        this.historyIndex = -1;
+
         this.circle = new Circle();
         this.square = new Square();
         this.rectangle = new Rectangle();
+
         this.setupEventListeners();
-        this.showWelcomeMessage();
+        this.printWelcomeMessage();
     }
 
     setupEventListeners() {
-        this.input.addEventListener('keydown', (e) => this.handleInput(e));
-        this.terminal.addEventListener('click', () => this.input.focus());
+        this.input.addEventListener('keydown', (e) => this.handleKeydown(e));
     }
 
-    showWelcomeMessage() {
-        this.printOutput(`Welcome to Shape Calculator v1.0.0
-Type 'help' to see available commands`, 'success');
-    }
-
-    handleInput(e) {
+    handleKeydown(e) {
         if (e.key === 'Enter') {
-            const command = this.input.value.trim();
-            if (command) {
-                this.executeCommand(command);
+            const command = this.input.value;
+            this.executeCommand(command);
+            this.commandHistory.push(command);
+            this.historyIndex = this.commandHistory.length;
+            this.input.value = '';
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (this.historyIndex > 0) {
+                this.historyIndex--;
+                this.input.value = this.commandHistory[this.historyIndex];
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (this.historyIndex < this.commandHistory.length - 1) {
+                this.historyIndex++;
+                this.input.value = this.commandHistory[this.historyIndex];
+            } else {
+                this.historyIndex = this.commandHistory.length;
                 this.input.value = '';
             }
         }
@@ -117,38 +104,55 @@ Type 'help' to see available commands`, 'success');
 
     executeCommand(command) {
         this.printOutput(`guest@portfolio:~$ ${command}`);
-        const [cmd, ...args] = command.toLowerCase().split(' ');
+        const parts = command.toLowerCase().trim().split(' ');
         
-        switch (cmd) {
-            case 'help':
-                this.showHelp();
-                break;
+        if (parts[0] === 'help') {
+            this.showHelp();
+        } else if (parts[0] === 'calculate') {
+            this.handleCalculation(parts.slice(1));
+        } else if (parts[0] === 'clear') {
+            this.clearTerminal();
+        } else if (parts[0] !== '') {
+            this.printOutput(`Command not found: ${parts[0]}`, 'error');
+        }
+    }
+
+    handleCalculation(args) {
+        if (args.length < 2) {
+            this.printOutput('Invalid command format. Type "help" for usage.', 'error');
+            return;
+        }
+
+        const shape = args[0];
+        const params = args.slice(1).map(Number);
+
+        if (params.some(isNaN)) {
+            this.printOutput('Invalid numbers provided.', 'error');
+            return;
+        }
+
+        switch (shape) {
             case 'circle':
-                this.calculateCircle(args[0]);
+                this.calculateCircle(params[0]);
                 break;
             case 'square':
-                this.calculateSquare(args[0]);
+                this.calculateSquare(params[0]);
                 break;
             case 'rectangle':
-                this.calculateRectangle(args[0], args[1]);
-                break;
-            case 'clear':
-                this.clearTerminal();
+                this.calculateRectangle(params[0], params[1]);
                 break;
             default:
-                this.printOutput(`Command not found: ${cmd}. Type 'help' for available commands.`, 'error');
+                this.printOutput(`Unknown shape: ${shape}`, 'error');
         }
     }
 
     showHelp() {
-        this.printOutput(`
-Available commands:
-  circle <radius>           Calculate circle area and circumference
-  square <length>          Calculate square area and perimeter
-  rectangle <length> <width>  Calculate rectangle area and perimeter
-  clear                    Clear the terminal
-  help                     Show this help message
-        `, 'success');
+        this.printOutput('Available commands:');
+        this.printOutput('  calculate circle <radius> - Calculate circle area and circumference');
+        this.printOutput('  calculate square <side> - Calculate square area and perimeter');
+        this.printOutput('  calculate rectangle <width> <height> - Calculate rectangle area and perimeter');
+        this.printOutput('  clear - Clear the terminal');
+        this.printOutput('  help - Show this help message');
     }
 
     calculateCircle(radius) {
@@ -158,8 +162,8 @@ Available commands:
         }
         try {
             const results = this.circle.calculate(Number(radius));
-            this.printOutput(this.circle.outputValue('Area', 'Circle', results.area), 'success');
-            this.printOutput(this.circle.outputValue('Circumference', 'Circle', results.circumference), 'success');
+            this.printOutput(this.circle.outputValue('Area', 'Circle', results.area, 'cm²'), 'success');
+            this.printOutput(this.circle.outputValue('Circumference', 'Circle', results.circumference, 'cm'), 'success');
         } catch (error) {
             this.printOutput(error.message, 'error');
         }
@@ -172,8 +176,8 @@ Available commands:
         }
         try {
             const results = this.square.calculate(Number(length));
-            this.printOutput(this.square.outputValue('Area', 'Square', results.area), 'success');
-            this.printOutput(this.square.outputValue('Perimeter', 'Square', results.perimeter), 'success');
+            this.printOutput(this.square.outputValue('Area', 'Square', results.area, 'cm²'), 'success');
+            this.printOutput(this.square.outputValue('Perimeter', 'Square', results.perimeter, 'cm'), 'success');
         } catch (error) {
             this.printOutput(error.message, 'error');
         }
@@ -186,8 +190,8 @@ Available commands:
         }
         try {
             const results = this.rectangle.calculate(Number(length), Number(width));
-            this.printOutput(this.rectangle.outputValue('Area', 'Rectangle', results.area), 'success');
-            this.printOutput(this.rectangle.outputValue('Perimeter', 'Rectangle', results.perimeter), 'success');
+            this.printOutput(this.rectangle.outputValue('Area', 'Rectangle', results.area, 'cm²'), 'success');
+            this.printOutput(this.rectangle.outputValue('Perimeter', 'Rectangle', results.perimeter, 'cm'), 'success');
         } catch (error) {
             this.printOutput(error.message, 'error');
         }
@@ -203,6 +207,11 @@ Available commands:
         line.textContent = text;
         this.output.appendChild(line);
         this.terminal.scrollTop = this.terminal.scrollHeight;
+    }
+
+    printWelcomeMessage() {
+        this.printOutput('Shape Calculator CLI');
+        this.printOutput('Type "help" for available commands');
     }
 }
 
