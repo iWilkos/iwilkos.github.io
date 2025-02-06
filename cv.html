@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <title>My CV | Ben Wilkinson Portfolio</title>
     <style>
         body {
@@ -189,6 +189,49 @@
             .sidebar.active {
                 left: 0;
             }
+        }
+
+        @media screen and (max-width: 480px) {
+            .cv-section {
+                padding: 80px 10px 20px;
+            }
+
+            .cv-container {
+                padding: 15px;
+            }
+
+            .experience-item, 
+            .education-item {
+                padding: 15px;
+            }
+
+            .skills-grid,
+            .hobbies-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .skill-card,
+            .hobbies-card {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        .experience-item,
+        .education-item,
+        .skill-card {
+            touch-action: pan-y;
+        }
+
+        .cv-download a {
+            min-height: 44px;
+            min-width: 44px;
+            padding: 12px 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>

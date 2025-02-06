@@ -169,9 +169,29 @@
             gap: 30px;
             padding: var(--card-padding);
             align-items: start;
+            margin-bottom: 50px;  /* Add space between featured cards */
         }
 
-        /* Terminal container responsive updates */
+        /* Separate CLI containers */
+        #password-generator-cli .terminal-input-line,
+        #shape-calculator-cli .terminal-input-line {
+            position: relative;
+            z-index: 1;
+        }
+
+        #password-generator-cli .terminal-window,
+        #shape-calculator-cli .terminal-window {
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Ensure each CLI container is independent */
+        .terminal-container {
+            position: relative;
+            isolation: isolate;
+        }
+
+        /* Terminal container styles */
         .terminal-container {
             background: #1a1a1a;
             border-radius: 8px;
@@ -192,6 +212,10 @@
             user-select: none;
             border-bottom: 1px solid #333;
         }
+
+        .terminal-button.close { background: #ff5f56; }
+        .terminal-button.minimize { background: #ffbd2e; }
+        .terminal-button.maximize { background: #27c93f; }
 
         .terminal-window {
             padding: 12px;
@@ -232,6 +256,19 @@
 
         .success { color: #2ea043; }
         .error { color: #f85149; }
+
+        .copy-button {
+            background: #4fc3f7;
+            border: none;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-left: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
 
         /* Certification image responsive updates */
         .project-card .certification-image {
@@ -461,19 +498,6 @@
             font-size: 12px;
         }
 
-        .copy-button {
-            background: #4fc3f7;
-            border: none;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 10px;
-            cursor: pointer;
-            margin-left: 8px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
         .output-line:hover .copy-button {
             opacity: 1;
         }
@@ -583,7 +607,7 @@
                     </div>
                     
                     <!-- Terminal Demo -->
-                    <div class="terminal-container">
+                    <div class="terminal-container" id="password-generator-cli">
                         <div class="terminal-header">
                             <div class="terminal-buttons">
                                 <span class="terminal-button close"></span>
@@ -612,7 +636,7 @@
                     </div>
                     
                     <!-- Terminal Demo -->
-                    <div class="terminal-container">
+                    <div class="terminal-container" id="shape-calculator-cli">
                         <div class="terminal-header">
                             <div class="terminal-buttons">
                                 <span class="terminal-button close"></span>
