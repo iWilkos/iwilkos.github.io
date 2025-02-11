@@ -402,6 +402,7 @@
             border-radius: 5px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             box-sizing: border-box;
+            margin-bottom: 10px;
         }
 
         .project-content {
@@ -412,7 +413,7 @@
         }
 
         .project-content h3 {
-            margin: 0 0 15px 0;
+            margin: 10px 0 15px 0;
             color: #4fc3f7;
             font-size: 1.4rem;
             position: relative;
@@ -622,6 +623,19 @@
             .project-card.featured iframe {
                 grid-column: 1;
                 margin-top: 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .project-card.featured img {
+                top: 20px;
+                left: 10px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .project-content h3 {
+                font-size: 1.2rem;
             }
         }
     </style>
