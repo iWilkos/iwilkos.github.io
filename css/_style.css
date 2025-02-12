@@ -1,0 +1,250 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #1a2b3c 0%, #2c3e50 100%);
+    color: white;
+}
+
+
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    background-color: #2980b9;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Remove all these styles */
+.hamburger,
+.hamburger-line,
+.overlay,
+.hamburger.active .hamburger-line:nth-child(1),
+.hamburger.active .hamburger-line:nth-child(2),
+.hamburger.active .hamburger-line:nth-child(3) {
+    display: none;
+}
+
+/* Add these new styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #2c3e50;
+    transition: 0.3s ease-in-out;
+    z-index: 1000;
+    padding-top: 60px;
+    box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+    background-color: #34495e;
+}
+
+.toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    cursor: pointer;
+    z-index: 1001;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 25px;
+}
+
+.toggle-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.toggle-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.toggle-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.toggle-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.content {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: 0;
+}
+
+.content.active {
+    margin-left: 250px;
+}
+
+@media screen and (max-width: 768px) {
+    .content.active {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero {
+        padding: 40px 20px;
+        text-align: left;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .cta-button {
+        display: inline-block;
+        width: auto;
+        min-width: 200px;
+        text-align: center;
+        margin: 5px 0;
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .content {
+        margin-left: 0 !important;
+    }
+
+    .social-buttons-top {
+        top: 15px;
+        right: 15px;
+    }
+
+    .toggle-btn {
+        padding: 10px;
+        margin: -10px;
+    }
+}
+
+.social-buttons-top {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+    z-index: 1002;
+}
+
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    color: white;
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.social-button img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.social-button:hover img {
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 480px) {
+    .social-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .social-button img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Prevent content shift when scrollbar appears */
+html {
+    overflow-y: scroll;
+}
+
+/* Better touch handling */
+@media (hover: none) {
+    .cta-button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .cta-button:active {
+        transform: translateY(1px);
+    }
+}

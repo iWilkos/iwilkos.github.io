@@ -1,0 +1,219 @@
+.contact-section {
+    padding: 120px 20px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-container h2 {
+    color: #4fc3f7;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    animation: titleGlow 2s infinite;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4fc3f7;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4fc3f7;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.3);
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #4fc3f7;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #81d4fa;
+    transform: translateY(-2px);
+}
+
+@keyframes titleGlow {
+    0% { text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(79, 195, 247, 0.8); }
+    100% { text-shadow: 0 0 5px rgba(79, 195, 247, 0.5); }
+}
+
+@media screen and (max-width: 768px) {
+    .content.active {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+
+    .contact-section {
+        padding: 80px 15px;
+    }
+
+    .contact-container {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contact-section {
+        padding: 60px 10px;
+    }
+
+    .contact-container {
+        padding: 15px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+    }
+
+    .social-buttons {
+        flex-direction: row;
+        padding: 0 20px;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .social-button {
+        width: 44px;
+        height: 44px;
+        margin: 5px 0;
+    }
+
+    .social-button img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.form-group input,
+.form-group textarea {
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.social-links {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.social-links h3 {
+    color: #4fc3f7;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    color: white;
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.social-button img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.social-button:hover {
+    background: transparent;
+}
+
+.social-button:hover img {
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 480px) {
+    .social-buttons {
+        flex-direction: row;
+        padding: 0 20px;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .social-button {
+        width: 44px;
+        height: 44px;
+        margin: 5px 0;
+    }
+
+    .social-button img {
+        width: 28px;
+        height: 28px;
+    }
+}

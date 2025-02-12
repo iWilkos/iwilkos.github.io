@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\173731\\OneDrive - Boston College\\College Work - Level 4\\Portfolio Versions\\With git\\iwilkos.github.io\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\173731\\OneDrive - Boston College\\College Work - Level 4\\Portfolio Versions\\With git\\iwilkos.github.io\\home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\173731\\OneDrive - Boston College\\College Work - Level 4\\Portfolio Versions\\With git\\iwilkos.github.io\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "home.html",
+              "DocumentMoniker": "C:\\Users\\173731\\OneDrive - Boston College\\College Work - Level 4\\Portfolio Versions\\With git\\iwilkos.github.io\\home.html",
+              "RelativeDocumentMoniker": "home.html",
+              "ToolTip": "C:\\Users\\173731\\OneDrive - Boston College\\College Work - Level 4\\Portfolio Versions\\With git\\iwilkos.github.io\\home.html",
+              "RelativeToolTip": "home.html",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAAwNQAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-02-12T12:05:20.261Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "1de17c41-f11e-476e-a8dc-cb43aeacd62e",
+        "Display": 1,
+        "X": 88,
+        "Y": 14,
+        "Width": 1090,
+        "Height": 784,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "about.html",
+              "DocumentMoniker": "C:\\Users\\173731\\OneDrive - Boston College\\College Work - Level 4\\Portfolio Versions\\With git\\iwilkos.github.io\\about.html",
+              "RelativeDocumentMoniker": "about.html",
+              "ToolTip": "C:\\Users\\173731\\OneDrive - Boston College\\College Work - Level 4\\Portfolio Versions\\With git\\iwilkos.github.io\\about.html",
+              "RelativeToolTip": "about.html",
+              "ViewState": "AgIAAOEAAAAAAAAAAAAwwA4BAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-02-12T12:05:31.323Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
