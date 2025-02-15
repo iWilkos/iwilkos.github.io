@@ -187,11 +187,24 @@
     transition: opacity 0.3s;
 }
 
-/* Certification image responsive updates */
-.project-card .certification-image {
-    width: 100%;
-    max-width: 400px;
+.project-card .portfolio-image {
+    justify-self: center;
+    width: 50%;
+    max-width: 500px;
     height: auto;
+    display: block;
+    margin: 30px auto;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: static;
+    cursor: pointer;
+}
+
+.project-card .portfolio-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(79, 195, 247, 0.3);
+    transition: all 0.3s ease;
 }
 
 /* Large screens (1200px and up) */
@@ -398,8 +411,12 @@
 /* Update project card styles */
 .project-card.compact {
     max-width: 500px;
-    justify-self: center;
+    justify-self: auto;
     padding: 40px;
+    display: inline-block;
+    width: calc(50% - 20px); /* 50% width minus margin */
+    margin: 10px;
+    align-items: left;
 }
 
 /* Update certification image styles */
@@ -444,6 +461,34 @@
 .project-card.certification p {
     font-size: 1.2rem;
     margin-bottom: 25px;
+}
+
+/* Updating Portfolio styles */
+
+.project-card.portfolio {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.project-card.portfolio .project-content {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.project-card.portfolio h3 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.project-card.portfolio p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* container for compact cards */
+.compact-container {
+    display: flex;
 }
 
 /* Responsive adjustments */
