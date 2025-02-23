@@ -1,7 +1,9 @@
+// Get elements from CSS to create variables
 const toggleBtn = document.querySelector('.toggle-btn');
 const sidebar = document.querySelector('.sidebar');
 const content = document.querySelector('.content');
 
+// Toggle sidebar
 toggleBtn.addEventListener('click', () => {
     sidebar.classList.toggle('active');
     toggleBtn.classList.toggle('active');
